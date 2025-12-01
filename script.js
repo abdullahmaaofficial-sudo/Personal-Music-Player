@@ -31,7 +31,6 @@ const songs = [
   { name: "Rovalio_Abdul Hannan-Bikhra", path: "Music/Rovalio _ Abdul Hannan - Bikhra (Official Music Video).mp4" },
   { name: "Talha Anjum - Lost In Time", path: "Music/Talha Anjum - Lost In Time _ Prod. by Umair (Official Audio).mp4" },
   { name: "Talha Anjum - Secrets", path: "Music/Talha Anjum - Secrets - Prod. by Umair (Official Audio).mp4" },
-  { name: "Talha Anjum - smile ", path: "Music/Umair, Talha Anjum - smile (Official Music Video).mp4" },
   { name: "KSI - Dirty [Official Visualiser]", path: "Music/KSI - Dirty [Official Visualiser].mp4" },
 ];
 
