@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Music Player</title>
+  <link rel="stylesheet" href="music_player.css" />
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <h1>MUSIC PLAYER</h1>
+    <div class="head_border"></div>
+  </header>
+
+  <main>
+    <section class="herosection">
+      <div class="audio_card">
+
+        <!-- Local audio element -->
+        <audio id="audio_id" preload="metadata"></audio>
+
+        <!-- Hidden YouTube iframe (YouTube API will create the player here) -->
+        <div id="youtube-player-container" style="display:none;"></div>
+
+        <div class="song_animation">
+          <h2 id="song-title">Song Name</h2>
+          <div class="song-name_border"></div>
+
+          <div class="music_sign">
+            <img src="icons/music-sign2.svg" alt="music-sign">
+            <!-- visualizer bars will be appended inside .music_sign by JS -->
+          </div>
+        </div>
+
+        <div class="progress-and-control-box">
+          <div class="progress-box">
+
+            <input type="range" id="progress" value="0" min="0" max="100"/>
+    
+            <div class="time-row">
+              <span id="current-time">00:00</span>
+              <span id="total-time">00:00</span>
+            </div>
+          </div>
+
+          <div class="controls">
+  
+
+  
+            <div class="center-controls-box">
+              <div id="shuffle_btn" title="Shuffle">
+                <img id="shuffle_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiBmaWxsPSIjMDBmZmNjIj4NCiAgPHBhdGggZD0iTTE2LjU5IDdMMTMgMTAuNTkgMTQuNDEgMTIgMTggOC40MVYxMmgyVjVoLTd2MmgzLjU5ek0zIDZoMi41OWw4LjcgOC43LTEuNDEgMS40MUw0LjE4IDcuNDEgMyA2em0xOCAxMmgtMi41OWwtOC43LTguNyAxLjQxLTEuNDFMMTkuODIgMTYuNTkgMjEgMTh6Ii8+DQo8L3N2Zz4NCg==" alt="shuffle" class="control-svg">
+              </div>
+
+              <div class="center-control">
+                  <div id="previous_btn" class="controls_btn" title="Previous">
+                  <img id="prev_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMwMGZmY2MiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCI+PHBhdGggZD0iTTYgNmgydjEySDZ6bTMuNSA2bDguNSA2VjZsLTguNSA2eiIvPjwvc3ZnPg==" alt="prev" class="control-svg small-ctrl" style="transform: rotate(180deg);">
+                </div>
+    
+                <div id="play_btn" class="controls_btn" title="Play/Pause">
+                  <img id="play_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzAwZmZjYyIgd2lkdGg9IjQ4cHgiIGhlaWdodD0iNDhweCI+PHBhdGggZD0iTTggNXYxNGwxMS03eiIvPjwvc3ZnPg==" alt="play" class="control-svg play-ctrl">
+                </div>
+    
+                <div id="next_btn" class="controls_btn" title="Next">
+                  <img id="next_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMwMGZmY2MiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCI+PHBhdGggZD0iTTE2IDZoMnYxMmgtMnpNNiA2djEybDguNS02eiIvPjwvc3ZnPg==" alt="next" class="control-svg small-ctrl">
+                </div>
+              </div>
+
+              <div id="repeat_btn" title="Repeat">
+                <img id="repeat_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMwMGZmY2MiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCI+PHBhdGggZD0iTTE3IDFsNCA0LTQgNFY2SDd2NEg1VjRoMTJWMXptLTEwIDIybC00LTQgNC00djNoMTB2LTRoMnY2SDd2M3oiLz48L3N2Zz4=" alt="repeat" class="control-svg">
+              </div>
+            </div>
+  
+            <div class="right-controls">
+              <div class="volume_icon" title="Mute/Unmute">
+                <img id="volume_icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9IiMwMGZmY2MiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCI+PHBhdGggZD0iTTMgMTB2NGg0bDUgNVY1TDcgMTBIM3ptMTMuNSAyYzAtMS43Ny0xLjAyLTMuMjktMi41LTQuMDN2OC4wNmMxLjQ4LS43NCAyLjUtMi4yNiAyLjUtNC4wM3oiLz48L3N2Zz4=" alt="volume" class="control-svg">
+              </div>
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="1" title="volume" style="cursor: pointer;"/>
+            </div>
+          </div>
+
+        </div>
+        
+
+      </div>
+    </section>
+
+    <!-- PLAYLIST AND ADD SONG SECTIONS -->
+    <div class="content-sections">
+      <div class="playlist-box">
+        <div id="playlist-items" class="playlist" 
+            oncontextmenu="return false;" 
+            onselectstart="return false;"
+            ondragstart="return false;"
+            unselectable="on"
+            style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+        </div>
+      </div>
+
+      <div class="add-song-box">
+        <div class="add-song-container">
+          <h3 style="color: #00ffcc; margin-bottom: 0.5rem;">Add Online Song</h3>
+          <input type="text" id="song-name-input" placeholder="Enter song name">
+          <input type="text" id="song-url-input" placeholder="Enter song URL">
+          <button id="add-song-btn" style="width: 100%; padding: 8px; margin-top: 8px; border: none; border-radius: 4px; background: #00ffcc; color: black; cursor: pointer; font-weight: bold;">Add Song</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- YouTube IFrame API (needed for hidden youtube playback) -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="script.js"></script>
+</body>
+</html>

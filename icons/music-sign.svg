@@ -1,0 +1,25 @@
+<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(18, 128, 136)" />
+      <stop offset="100%" style="stop-color:rgb(15, 63, 221)" />
+    </linearGradient>
+    
+    <filter id="shadow">
+      <feDropShadow dx="1" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Flag (rounded heavily on right side, flat on left - AT THE TOP) -->
+  <path d="M 87 30 L 170 30 Q 195 30 195 50 Q 195 70 170 70 L 87 70 Z"
+        fill="url(#gradient)"/>
+  
+  <!-- Stem (starts from flag bottom, ends exactly at top-right of oval) -->
+  <rect x="87" y="70" width="17" height="125" 
+        fill="url(#gradient)"/>
+  
+  <!-- Bottom note head (oval with left side curved, right side straighter) -->
+  <ellipse cx="60" cy="220" rx="55" ry="38" 
+           fill="url(#gradient)"
+           transform="rotate(-28 60 220)"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(18, 128, 136)" />
+      <stop offset="100%" style="stop-color:rgb(15, 63, 221)" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Double eighth note with beams -->
+  
+  <!-- First note head (left) -->
+  <ellipse cx="50" cy="220" rx="28" ry="20" 
+           fill="url(#blueGradient)"
+           transform="rotate(-20 50 220)"/>
+  
+  <!-- Second note head (right) -->
+  <ellipse cx="120" cy="240" rx="28" ry="20" 
+           fill="url(#blueGradient)"
+           transform="rotate(-20 120 240)"/>
+  
+  <!-- First stem -->
+  <rect x="72" y="60" width="10" height="165" 
+        rx="5"
+        fill="url(#blueGradient)"/>
+  
+  <!-- Second stem -->
+  <rect x="142" y="80" width="10" height="165" 
+        rx="5"
+        fill="url(#blueGradient)"/>
+  
+  <!-- Double beams connecting the stems -->
+  <path d="M 82 60 L 152 80 L 152 95 L 82 75 Z"
+        fill="url(#blueGradient)"/>
+  
+  <path d="M 82 100 L 152 120 L 152 135 L 82 115 Z"
+        fill="url(#blueGradient)"/>
+</svg>
